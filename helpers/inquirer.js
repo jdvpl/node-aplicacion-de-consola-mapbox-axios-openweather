@@ -70,16 +70,16 @@ const leetInput=async(message)=>{
 }
 
 
-const listadoTareasBorrar=async(tareas=[])=>{
+const listadoLugares=async(lugares=[])=>{
   // {
   //   value: '2',
   //   name:`${'2'.green}. Listar tareas`
   // },
-  const choices=tareas.map( (tarea, i) =>{
+  const choices=lugares.map( (lugar, i) =>{
     const idx=`${i+1}.`.green
     return{
-      value:tarea.id,
-      name:` ${idx} ${tarea.desc}`,
+      value:lugar.id,
+      name:` ${idx} ${lugar.name}`,
     }
   })
   choices.unshift({
@@ -90,7 +90,7 @@ const listadoTareasBorrar=async(tareas=[])=>{
     {
       type:'list',
       name:'id',
-      message:'Borrar',
+      message:'Selecciona el lugar',
       choices
     }
   ]
@@ -143,7 +143,7 @@ module.exports ={
   inquirerMenu,
   pausa,
   leetInput,
-  listadoTareasBorrar,
+  listadoLugares,
   confirmar,
   mostrarListadoCheckList
 };

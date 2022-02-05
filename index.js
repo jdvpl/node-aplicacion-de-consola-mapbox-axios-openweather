@@ -1,4 +1,4 @@
-const { leetInput,inquirerMenu,pausa } = require("./helpers/inquirer");
+const { leetInput,inquirerMenu,pausa, listadoLugares } = require("./helpers/inquirer");
 const Busquedas = require("./models/busquedas");
 require('dotenv').config();
 require("colors")
@@ -15,19 +15,24 @@ const main =async() => {
       case 1:
         // crear opcion
         //mostrar mensaje para que la persona escriba
-        const ciudad=await leetInput('Ciudad: ');
-        busquedas.ciudad(ciudad);
+        const termino=await leetInput('Ciudad: ');
+        
         // buscar los lugares
-
+        const lugares=await busquedas.ciudad(termino);
         //seleccionar el lugar
+        const idSlected=await listadoLugares(lugares);
+
+        const lugarselected=lugares.find( l=>l.id === idSlected);
+
+        const {name,lat,lng}=lugarselected;
 
         //clima
 
         //mostrar resultados
-        console.log(`\nInformacion de ${ciudad}\n`.green);
-        console.log('Ciudad: ');
-        console.log('Lat: ');
-        console.log('Lng: ');
+        console.log(`\nInformacion de ${termino}\n`.green);
+        console.log('Ciudad: ', name);
+        console.log('Lat: ',lat);
+        console.log('Lng: ',lng);
         console.log('Temperatura: ');
         console.log('Minima: ');
         console.log('Maxima: ');

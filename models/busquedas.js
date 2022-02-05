@@ -24,7 +24,13 @@ class Busquedas{
         params:this.paramsMapbox
       })
       const res=await instance.get(`geocoding/v5/mapbox.places/${lugar}.json`);
-      console.log(res.data);
+      return res.data.features.map(lugar =>({
+        id:lugar.id,
+        name:lugar.place_name,
+        // en mapbox es alcontrario que google map primero va lng y luego lat
+        lng:lugar.center[0],
+        lat:lugar.center[1],
+      }))
       return []; //regresar los lugar con la busqueda
     } catch (error) {
       return []; //regresar
