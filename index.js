@@ -7,10 +7,11 @@ const main =async() => {
 
 
   let opt;
+  const busquedas=new Busquedas();
+
   do {
 
     opt=await inquirerMenu();
-    const busquedas=new Busquedas();
     switch (opt) {
       case 1:
         // crear opcion
@@ -22,14 +23,17 @@ const main =async() => {
         //seleccionar el lugar
         const idSlected=await listadoLugares(lugares);
 
-        if (idSlected !==0){
+        
+          if (idSlected ===0)continue;
           const lugarselected=lugares.find( l=>l.id === idSlected);
 
-            const {name,lat,lng}=lugarselected;
+          const {name,lat,lng}=lugarselected;
+            
+          // guardar en db
+            busquedas.agregarHistorial(name)
 
             //clima
             const clima=await busquedas.climePlace(lat,lng);
-      
             //mostrar resultados
             console.log(`\nInformacion de ${termino}\n`.green);
             console.log('Ciudad: ', name.green);
@@ -42,14 +46,17 @@ const main =async() => {
             console.log('Velocidad del viento: ',clima.speed_wind);
             console.log('Presion ',clima.pressure);
             console.log('Humedad ',clima.humidity);
-        }
-        
       break;
       case 2:
-        console.log("Historial");
+
+        
+        busquedas.historial.forEach( (lugar,idx)=>{
+          const id=`${idx+1}.`.green
+          console.log(`${id} ${lugar}`);
+        })
       break;
       case 3:
-        console.log("");
+        console.log("Muchas gracias.");
       break;
   
         
