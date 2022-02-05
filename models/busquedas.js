@@ -55,11 +55,7 @@ class Busquedas{
 
       //tepuesta extrarer la info
 
-
       //retornar objeto la descripcion
-
-
-
       
       const res=await instance.get(`data/2.5/weather`);
 
@@ -70,7 +66,7 @@ class Busquedas{
         min:main.temp_min,
         temp:main.temp,
         max:main.temp_max,
-        speed_wind:wind.speed,
+        speed_wind:wind.speed ?? '',
         pressure:main.pressure,
         humidity:main.humidity,
       }

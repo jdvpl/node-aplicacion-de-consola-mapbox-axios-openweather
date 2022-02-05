@@ -22,22 +22,28 @@ const main =async() => {
         //seleccionar el lugar
         const idSlected=await listadoLugares(lugares);
 
-        const lugarselected=lugares.find( l=>l.id === idSlected);
+        if (idSlected !==0){
+          const lugarselected=lugares.find( l=>l.id === idSlected);
 
-        const {name,lat,lng}=lugarselected;
+            const {name,lat,lng}=lugarselected;
 
-        //clima
-        const clima=await busquedas.climePlace(lat,lng);
-  
-        //mostrar resultados
-        console.log(`\nInformacion de ${termino}\n`.green);
-        console.log('Ciudad: ', name.green);
-        console.log('Lat: ',lat);
-        console.log('Lng: ',lng);
-        console.log('Temperatura: ',clima.temp);
-        console.log('Minima: ',clima.min);
-        console.log('Maxima: ',clima.max);
-        console.log('Descricion: ',(clima.desc).blue);
+            //clima
+            const clima=await busquedas.climePlace(lat,lng);
+      
+            //mostrar resultados
+            console.log(`\nInformacion de ${termino}\n`.green);
+            console.log('Ciudad: ', name.green);
+            console.log('Lat: ',lat);
+            console.log('Lng: ',lng);
+            console.log('Temperatura: ',clima.temp);
+            console.log('Minima: ',clima.min);
+            console.log('Maxima: ',clima.max);
+            console.log('Descricion: ',(clima.desc).blue);
+            console.log('Velocidad del viento: ',clima.speed_wind);
+            console.log('Presion ',clima.pressure);
+            console.log('Humedad ',clima.humidity);
+        }
+        
       break;
       case 2:
         console.log("Historial");
