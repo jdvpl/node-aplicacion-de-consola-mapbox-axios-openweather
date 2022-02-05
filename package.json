@@ -1,0 +1,26 @@
+{
+  "name": "3-openweather-mapbox-console-app",
+  "version": "1.0.0",
+  "description": "esta es un servidor hecho en node todo por consola el cual consulta el cilma de una ciudad usa mapbox y openweather",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdvpl/node-aplicacion-de-consola-mapbox-axios-openweather.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdvpl/node-aplicacion-de-consola-mapbox-axios-openweather/issues"
+  },
+  "homepage": "https://github.com/jdvpl/node-aplicacion-de-consola-mapbox-axios-openweather#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "colors": "^1.4.0",
+    "inquirer": "^8.2.0"
+  }
+}
