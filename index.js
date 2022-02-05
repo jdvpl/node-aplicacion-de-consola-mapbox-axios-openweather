@@ -27,15 +27,17 @@ const main =async() => {
         const {name,lat,lng}=lugarselected;
 
         //clima
-
+        const clima=await busquedas.climePlace(lat,lng);
+  
         //mostrar resultados
         console.log(`\nInformacion de ${termino}\n`.green);
-        console.log('Ciudad: ', name);
+        console.log('Ciudad: ', name.green);
         console.log('Lat: ',lat);
         console.log('Lng: ',lng);
-        console.log('Temperatura: ');
-        console.log('Minima: ');
-        console.log('Maxima: ');
+        console.log('Temperatura: ',clima.temp);
+        console.log('Minima: ',clima.min);
+        console.log('Maxima: ',clima.max);
+        console.log('Descricion: ',(clima.desc).blue);
       break;
       case 2:
         console.log("Historial");

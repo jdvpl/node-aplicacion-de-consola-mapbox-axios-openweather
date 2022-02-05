@@ -30,12 +30,53 @@ class Busquedas{
         // en mapbox es alcontrario que google map primero va lng y luego lat
         lng:lugar.center[0],
         lat:lugar.center[1],
-      }))
-      return []; //regresar los lugar con la busqueda
+      })) //regresar los lugar con la busqueda
     } catch (error) {
       return []; //regresar
     }
 
+  }
+
+  get paramsOpenWeather(){
+    return  {
+      'appid':process.env.OPENWEATHER_KEY,
+      'units':'metric',
+      'lang':'es'
+    }
+  }
+
+  async climePlace(lat,lon){
+    try {
+      //crear instancia de axios
+      const instance=axios.create({
+        baseURL: `https://api.openweathermap.org/`,
+        params:{...this.paramsOpenWeather,lat,lon},
+      });
+
+      //tepuesta extrarer la info
+
+
+      //retornar objeto la descripcion
+
+
+
+      
+      const res=await instance.get(`data/2.5/weather`);
+
+      const {weather,main,wind} =res.data
+
+      return {
+        desc:weather[0].description,
+        min:main.temp_min,
+        temp:main.temp,
+        max:main.temp_max,
+        speed_wind:wind.speed,
+        pressure:main.pressure,
+        humidity:main.humidity,
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
