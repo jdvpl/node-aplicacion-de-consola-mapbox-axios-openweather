@@ -1,6 +1,5 @@
 
 const axios = require('axios');
-const tokenMapbox = require('../tokens');
 
 class Busquedas{
   historial=['tegucigalpa',"garzon","Bogota"];
@@ -11,7 +10,7 @@ class Busquedas{
 
   get paramsMapbox(){
     return  {
-      'access_token':tokenMapbox,
+      'access_token':process.env.MAPBOX_KEY,
       'limit':10,
       'language':'es'
     }

@@ -4,7 +4,7 @@ esta es un servidor hecho en node todo por consola el cual consulta el cilma de 
 
 ### paquetes
 `
-npm i inquirer colors axios
+npm i inquirer colors axios dotenv
 `
 
 

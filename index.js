@@ -1,5 +1,6 @@
 const { leetInput,inquirerMenu,pausa } = require("./helpers/inquirer");
 const Busquedas = require("./models/busquedas");
+require('dotenv').config();
 require("colors")
 
 const main =async() => {
@@ -8,10 +9,8 @@ const main =async() => {
   let opt;
   do {
 
-  opt=await inquirerMenu();
-
+    opt=await inquirerMenu();
     const busquedas=new Busquedas();
-
     switch (opt) {
       case 1:
         // crear opcion
@@ -24,7 +23,6 @@ const main =async() => {
 
         //clima
 
-
         //mostrar resultados
         console.log(`\nInformacion de ${ciudad}\n`.green);
         console.log('Ciudad: ');
@@ -33,7 +31,6 @@ const main =async() => {
         console.log('Temperatura: ');
         console.log('Minima: ');
         console.log('Maxima: ');
-
       break;
       case 2:
         console.log("Historial");
@@ -50,5 +47,4 @@ const main =async() => {
 
 }
 
-console.log(process.env);
 main()
