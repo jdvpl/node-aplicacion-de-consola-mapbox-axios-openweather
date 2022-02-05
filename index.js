@@ -50,7 +50,7 @@ const main =async() => {
       case 2:
 
         
-        busquedas.historial.forEach( (lugar,idx)=>{
+        busquedas.dataCapitazadas.forEach( (lugar,idx)=>{
           const id=`${idx+1}.`.green
           console.log(`${id} ${lugar}`);
         })
