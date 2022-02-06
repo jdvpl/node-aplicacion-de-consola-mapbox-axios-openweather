@@ -48,13 +48,6 @@ class Busquedas{
     }
   }
 
-  get dataCapitazadas(){
-    return this.historial.map( lugar=>{
-      let palabras=lugar.split(' ')
-      palabras=palabras.map(p =>p[0].toUpperCase()+ p.substring(1));
-      return palabras.join(' ')
-    })
-  }
 
   async climePlace(lat,lon){
     try {
@@ -86,14 +79,17 @@ class Busquedas{
     }
   }
 
-  agregarHistorial(lugar=''){
+  agregarHistorial(lugar={}){
 
-    if(this.historial.includes(lugar.toLocaleLowerCase())){
+    let data=[]
+    this.historial.map( l=>{
+      data.push(l.id);
+    })
+    if(data.includes(lugar.id)){
       return;
     }
-
+    this.historial.unshift(lugar);
     this.historial=this.historial.splice(0,5);
-    this.historial.unshift(lugar.toLocaleLowerCase());
     // grabar en db
     this.guardarDb();
   }
@@ -108,13 +104,14 @@ class Busquedas{
   LeerDb(){
     // si existe
   if(!fs.existsSync(this.archivo)){
-    return null;
+    return;
   }
 
   const info =fs.readFileSync(this.archivo, { encoding: 'utf8'})
-  const data=JSON.parse(info);
+  if(!info) return;
+  const {historial}=JSON.parse(info);
 
-    this.historial=data.historial
+    this.historial=[...historial]
   }
 }
 

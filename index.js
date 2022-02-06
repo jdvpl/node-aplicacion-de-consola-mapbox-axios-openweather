@@ -30,8 +30,9 @@ const main =async() => {
           const {name,lat,lng}=lugarselected;
             
           // guardar en db
-            busquedas.agregarHistorial(name)
 
+            let datos=lugarselected;
+            
             //clima
             const clima=await busquedas.climePlace(lat,lng);
             //mostrar resultados
@@ -46,13 +47,23 @@ const main =async() => {
             console.log('Velocidad del viento: ',clima.speed_wind);
             console.log('Presion ',clima.pressure);
             console.log('Humedad ',clima.humidity);
+
+            datos.temp=clima.temp;
+            datos.min=clima.min;
+            datos.max=clima.max;
+            datos.desc=clima.desc;
+            datos.speed_wind=clima.speed_wind;
+            datos.pressure=clima.pressure;
+            datos.humidity=clima.humidity;
+            busquedas.agregarHistorial(datos)
       break;
       case 2:
 
-        
-        busquedas.dataCapitazadas.forEach( (lugar,idx)=>{
-          const id=`${idx+1}.`.green
-          console.log(`${id} ${lugar}`);
+        let numer=0;
+        busquedas.historial.forEach( (lugar)=>{
+          numer+=1;
+          const id=`${numer+1}.`.green
+          console.log(`${id} :: Nombre:${lugar.name} :: Estado: ${lugar.desc.blue} :: Temp: ${(lugar.temp +'').yellow} :: Humedad: ${(lugar.humidity+'').gray} :: Presion: ${(lugar.pressure+'').cyan}`);
         })
       break;
       case 3:
